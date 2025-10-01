@@ -1,0 +1,50 @@
+body {
+  background-color: #000; /* fundo preto */
+  color: #fff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+ul.cards {
+  list-style: none;
+  padding: 0;
+  max-width: 400px; /* largura da lista */
+  margin: auto;
+}
+
+ul.cards li {
+  display: flex;
+  flex-direction: column; /* vertical */
+  align-items: center;
+  margin-bottom: 20px; /* espaço entre itens */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+ul.cards li img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+ul.cards li span {
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+ul.cards li:hover span {
+  color: #00a2ff; /* azul Fortnite ao passar o mouse */
+}
+
+ul.cards li:active span {
+  color: #005f99; /* azul escuro ao clicar */
+}

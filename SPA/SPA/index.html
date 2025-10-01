@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Fortnite Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    nav {
+      font-size: 1.5em;
+      text-align: center;
+      margin: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff; /* branco */
+      padding: 8px 15px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00a2ff; /* azul Fortnite */
+    }
+
+    nav a:active {
+      color: #005f99; /* azul mais escuro */
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="skins.html" wm-link wm-destino=".pagina">Skins</a> |
+    <a href="cidades.html" wm-link wm-destino=".pagina">Cidades</a>
+  </nav>
+
+  <div class="pagina"></div>
+
+  <script>
+    function navegarViaAjax(url, seletor, push = true) {
+      if (!url || !seletor) return
+      const elemento = document.querySelector(seletor)
+      fetch(url)
+        .then(resp => resp.text())
+        .then(html => {
+          elemento.innerHTML = html
+          if (push) {
+            history.pushState({ seletor }, "Página Ajax", url)
+          }
+        })
+    }
+
+    document.querySelectorAll('[wm-link]').forEach(link => {
+      const url = link.getAttribute('href')
+      const seletorDestino = link.getAttribute('wm-destino')
+      link.onclick = e => {
+        e.preventDefault()
+        navegarViaAjax(url, seletorDestino)
+      }
+    })
+
+    window.onpopstate = e => {
+      if (e.state) {
+        navegarViaAjax(window.location.href, e.state.seletor, false)
+      }
+    }
+  </script>
+</body>
+</html>
